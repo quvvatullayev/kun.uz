@@ -102,3 +102,21 @@ class Video_new_piece(models.Model):
     def __str__(self):
         return self.title
     
+
+class Area_new(models.Model):
+    title = models.CharField(max_length=500)
+    comment = models.CharField(max_length=800)
+    description = models.CharField(max_length=10000)
+    img = models.ImageField(upload_to='images/')
+    created = models.DateTimeField(auto_now_add=True)
+
+    def __str__(self):
+        return self.title
+    
+class Area_new_piece(models.Model):
+    description = models.CharField(max_length=10000)
+    img = models.ImageField(upload_to='images/')
+    area_new = models.ForeignKey(Area_new, on_delete=models.CASCADE)
+
+    def __str__(self):
+        return self.description
