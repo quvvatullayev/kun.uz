@@ -83,6 +83,7 @@ class Bisnes_new_piece(models.Model):
     
 class Video_new(models.Model):
     title = models.CharField(max_length=500)
+    comment = models.CharField(max_length=800)
     created = models.DateTimeField(auto_now_add=True)
     youtube_link = models.CharField(max_length=1000)
     new_type = models.ForeignKey(New_type, on_delete=models.CASCADE)
