@@ -18,9 +18,9 @@ class Create_day_new(APIView):
     
 class List_day_new(APIView):
     def get(self, request:Request):
-        day_new = Day_new.objects.all()[-5:]
+        day_new = Day_new.objects.all()
         serializer = Day_newSerializer(day_new, many=True)
-        return Response(serializer.data, status=status.HTTP_200_OK)
+        return Response(serializer.data[-5:], status=status.HTTP_200_OK)
     
 class Detail_day_new(APIView):
     def get(self, request:Request, pk):
