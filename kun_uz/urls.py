@@ -61,3 +61,19 @@ urlpatterns += [
     path('actual/update/<int:pk>/', UpdateActual.as_view()),
     path('actual/delete/<int:pk>/', DeleteActual.as_view()),
 ]
+
+from .views.Intervyu import (
+    CreateIntervyu,
+    GetIntervyu,
+    IntervyuList,
+    UpdateIntervyu,
+    DeleteIntervyu,
+)
+
+urlpatterns += [
+    path('intervyu/create/', CreateIntervyu.as_view()),
+    path('intervyu/list/', GetIntervyu.as_view()),
+    path('intervyu/list_all/', IntervyuList.as_view()),
+    path('intervyu/update/<int:pk>/', UpdateIntervyu.as_view()),
+    path('intervyu/delete/<int:pk>/', DeleteIntervyu.as_view()),
+]
