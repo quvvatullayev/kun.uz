@@ -6,6 +6,7 @@ from .models import (
     Day_new,
     Day_new_piece,
     Actual,
+    Actual_piece,
     Intervyu,
     Intervyu_piece,
     Article,
@@ -29,6 +30,11 @@ class AreaSerializer(serializers.ModelSerializer):
         model = Area
         fields = '__all__'
 
+class Actual_pieceSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = Actual_piece
+        fields = '__all__'
+
 class Day_new_pieceSerializer(serializers.ModelSerializer):
     class Meta:
         model = Day_new_piece
@@ -43,6 +49,8 @@ class ActualSerializer(serializers.ModelSerializer):
     class Meta:
         model = Actual
         fields = '__all__'
+
+
 
 class IntervyuSerializer(serializers.ModelSerializer):
     class Meta:

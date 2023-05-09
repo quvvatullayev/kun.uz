@@ -41,7 +41,16 @@ class Actual(models.Model):
 
     def __str__(self):
         return self.title
-    
+
+class Actual_piece(models.Model):
+    img = models.ImageField(upload_to='images/')
+    title = models.CharField(max_length=500)
+    description = models.CharField(max_length=10000, blank=True, null=True)
+    actual = models.ForeignKey(Actual, on_delete=models.CASCADE)
+
+    def __str__(self):
+        return self.title
+
 class Intervyu(models.Model):
     title = models.CharField(max_length=500)
     description = models.CharField(max_length=10000)
