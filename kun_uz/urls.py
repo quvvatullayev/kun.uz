@@ -1,5 +1,5 @@
 from django.urls import path
-from views.new_type import (
+from .views.new_type import (
     Create_new_type,
     List_new_type,
     Detail_new_type,
@@ -16,7 +16,7 @@ urlpatterns += [
     path('new_type/delete/<int:pk>/', Delete_new_type.as_view()),
 ]
 
-from views.area import (
+from .views.area import (
     Create_area,
     List_area,
     Detail_area,
@@ -32,7 +32,7 @@ urlpatterns += [
     path('area/delete/<int:pk>/', Delete_area.as_view()),
 ]
 
-from views.day_new import (
+from .views.day_new import (
     Create_day_new,
     List_day_new,
     Detail_day_new,
