@@ -21,6 +21,15 @@ class Day_new(models.Model):
 
     def __str__(self):
         return self.title
+
+class Day_new_piece(models.Model):
+    title = models.CharField(max_length=500)
+    description = models.CharField(max_length=10000, blank=True, null=True)
+    img = models.ImageField(upload_to='images/', blank=True, null=True)
+    day_new = models.ForeignKey(Day_new, on_delete=models.CASCADE)
+
+    def __str__(self):
+        return self.title
     
 class Actual(models.Model):
     title = models.CharField(max_length=500)
