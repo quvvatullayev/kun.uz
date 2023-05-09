@@ -15,3 +15,19 @@ urlpatterns += [
     path('new_type/update/<int:pk>/', Update_new_type.as_view()),
     path('new_type/delete/<int:pk>/', Delete_new_type.as_view()),
 ]
+
+from views.area import (
+    Create_area,
+    List_area,
+    Detail_area,
+    Update_area,
+    Delete_area,
+)
+
+urlpatterns += [
+    path('area/create/', Create_area.as_view()),
+    path('area/list/', List_area.as_view()),
+    path('area/detail/<int:pk>/', Detail_area.as_view()),
+    path('area/update/<int:pk>/', Update_area.as_view()),
+    path('area/delete/<int:pk>/', Delete_area.as_view()),
+]
