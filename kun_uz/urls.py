@@ -31,3 +31,19 @@ urlpatterns += [
     path('area/update/<int:pk>/', Update_area.as_view()),
     path('area/delete/<int:pk>/', Delete_area.as_view()),
 ]
+
+from views.day_new import (
+    Create_day_new,
+    List_day_new,
+    Detail_day_new,
+    Update_day_new,
+    Delete_day_new,
+)
+
+urlpatterns += [
+    path('day_new/create/', Create_day_new.as_view()),
+    path('day_new/list/', List_day_new.as_view()),
+    path('day_new/detail/<int:pk>/', Detail_day_new.as_view()),
+    path('day_new/update/<int:pk>/', Update_day_new.as_view()),
+    path('day_new/delete/<int:pk>/', Delete_day_new.as_view()),
+]
