@@ -4,9 +4,11 @@ from rest_framework.request import Request
 from rest_framework import status
 from ..models import (
     Day_new,
+    Day_new_piece,
 )
 from ..serialization import (
     Day_newSerializer,
+    Day_new_pieceSerializer,
 )
 
 class Create_day_new(APIView):
@@ -25,8 +27,12 @@ class List_day_new(APIView):
 class Detail_day_new(APIView):
     def get(self, request:Request, pk):
         day_new = Day_new.objects.get(id=pk)
+        day_new_piece = Day_new_piece.objects.filter(day_new=day_new)
+        serializer_piece = Day_new_pieceSerializer(day_new_piece, many=True)
         serializer = Day_newSerializer(day_new)
-        return Response(serializer.data, status=status.HTTP_200_OK)
+        data = serializer.data
+        data['day_new_piece'] = serializer_piece.data
+        return Response(data, status=status.HTTP_200_OK)
     
 class Update_day_new(APIView):
     def post(self, request:Request, pk):
