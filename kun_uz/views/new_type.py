@@ -2,11 +2,11 @@ from rest_framework.views import APIView
 from rest_framework.response import Response
 from rest_framework.request import Request
 from rest_framework import status
-from models import (
+from ..models import (
     New_type,
 )
 
-from serialization import (
+from ..serialization import (
     New_typeSerializer,
 )
 
