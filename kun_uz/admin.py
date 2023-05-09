@@ -3,6 +3,7 @@ from django.contrib import admin
 from .models import (
     Area,
     Day_new,
+    Day_new_piece,
     New_type,
     Actual,
     Intervyu,
@@ -32,6 +33,13 @@ class Day_newAdmin(admin.ModelAdmin):
     list_filter = ('title', 'comment', 'description', 'created',)
     search_fields = ('title', 'comment', 'description', 'created',)
     ordering = ('title', 'comment', 'description', 'created',)
+
+@admin.register(Day_new_piece)
+class Day_new_pieceAdmin(admin.ModelAdmin):
+    list_display = ('title', 'description', 'day_new',)
+    list_filter = ('title', 'description', 'day_new',)
+    search_fields = ('title', 'description', 'day_new',)
+    ordering = ('title', 'description', 'day_new',)
     
 
 @admin.register(New_type)
