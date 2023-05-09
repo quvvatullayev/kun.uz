@@ -35,3 +35,9 @@ class Update_area(APIView):
         if serializer.is_valid():
             serializer.save()
         return Response(serializer.data, status=status.HTTP_200_OK)
+    
+class Delete_area(APIView):
+    def delete(self, request:Request, pk):
+        area = Area.objects.get(id=pk)
+        area.delete()
+        return Response({'message': 'deleted'}, status=status.HTTP_200_OK)
