@@ -82,6 +82,12 @@ class Article(models.Model):
     def __str__(self):
         return self.title
     
+class Article_piece(models.Model):
+    img = models.ImageField(upload_to='images/')
+    title = models.CharField(max_length=500)
+    description = models.CharField(max_length=10000)
+    article = models.ForeignKey(Article, on_delete=models.CASCADE)
+
 class Bisnes_new(models.Model):
     title = models.CharField(max_length=500)
     description = models.CharField(max_length=10000)

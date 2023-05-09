@@ -10,6 +10,7 @@ from .models import (
     Intervyu,
     Intervyu_piece,
     Article,
+    Article_piece,
     Bisnes_new,
     Bisnes_new_piece,
     Video_new, 
@@ -65,6 +66,11 @@ class Intervyu_pieceSerializer(serializers.ModelSerializer):
 class ArticleSerializer(serializers.ModelSerializer):
     class Meta:
         model = Article
+        fields = '__all__'
+
+class Article_pieceSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = Article_piece
         fields = '__all__'
 
 class Bisnes_newSerializer(serializers.ModelSerializer):
