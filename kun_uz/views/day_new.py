@@ -22,14 +22,23 @@ class List_day_new(APIView):
     def get(self, request:Request):
         day_new = Day_new.objects.all()
         serializer = Day_newSerializer(day_new, many=True)
-        data = {}
-        for i in serializer.data[-5:]:
+        data = {'day_naws': []}
+        n = 0
+        for i in serializer.data:
             day_new_piece = Day_new_piece.objects.filter(day_new=i['id'])
             serializer_piece = Day_new_pieceSerializer(day_new_piece, many=True)
-            i['day_new_piece'] = serializer_piece.data
-            data[i['id']] = i
+            data['day_naws'].append({
+                'id': i['id'],
+                'title': i['title'],
+                'description': i['description'],
+                'comment': i['comment'],
+                'created': i['created'],
+                'img': i['img'],
+                'day_new_piece': serializer_piece.data,
 
-        return Response(serializer.data[-5:], status=status.HTTP_200_OK)
+            })
+
+        return Response(data, status=status.HTTP_200_OK)
     
 class Detail_day_new(APIView):
     def get(self, request:Request, pk):
