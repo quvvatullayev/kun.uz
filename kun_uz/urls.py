@@ -47,3 +47,17 @@ urlpatterns += [
     path('day_new/update/<int:pk>/', Update_day_new.as_view()),
     path('day_new/delete/<int:pk>/', Delete_day_new.as_view()),
 ]
+
+from .views.actual import (
+    CreateActual,
+    GetActual,
+    UpdateActual,
+    DeleteActual,
+)
+
+urlpatterns += [
+    path('actual/create/', CreateActual.as_view()),
+    path('actual/list/', GetActual.as_view()),
+    path('actual/update/<int:pk>/', UpdateActual.as_view()),
+    path('actual/delete/<int:pk>/', DeleteActual.as_view()),
+]
