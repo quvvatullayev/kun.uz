@@ -4,9 +4,11 @@ from rest_framework.request import Request
 from rest_framework import status
 from ..models import (
     Intervyu,
+    Intervyu_piece,
 )
 from ..serialization import (
     IntervyuSerializer,
+    Intervyu_pieceSerializer,
 )
 
 class CreateIntervyu(APIView):
@@ -28,6 +30,16 @@ class GetIntervyu(APIView):
         intervyu = Intervyu.objects.all()
         serializer = IntervyuSerializer(intervyu, many=True)
         return Response(serializer.data[-4:], status=status.HTTP_200_OK)
+
+class DetailIntervyu(APIView):
+    def get(self, request: Request, pk):
+        intervyu = Intervyu.objects.get(id=pk)
+        intervyu_piece = Intervyu_piece.objects.filter(intervyu=intervyu)
+        piece_serializer = Intervyu_pieceSerializer(intervyu_piece, many=True)
+        serializer = IntervyuSerializer(intervyu)
+        data = serializer.data
+        data['intervyu_piece'] = piece_serializer.data
+        return Response(data, status=status.HTTP_200_OK)
     
 class IntervyuList(APIView):
     def get(self, request: Request):

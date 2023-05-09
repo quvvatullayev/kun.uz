@@ -68,6 +68,7 @@ from .views.Intervyu import (
     IntervyuList,
     UpdateIntervyu,
     DeleteIntervyu,
+    DetailIntervyu,
 )
 
 urlpatterns += [
@@ -76,4 +77,5 @@ urlpatterns += [
     path('intervyu/list_all/', IntervyuList.as_view()),
     path('intervyu/update/<int:pk>/', UpdateIntervyu.as_view()),
     path('intervyu/delete/<int:pk>/', DeleteIntervyu.as_view()),
+    path('intervyu/detail/<int:pk>/', DetailIntervyu.as_view()),
 ]
