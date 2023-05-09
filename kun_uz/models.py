@@ -102,7 +102,6 @@ class Video_new_piece(models.Model):
     def __str__(self):
         return self.title
     
-
 class Area_new(models.Model):
     title = models.CharField(max_length=500)
     comment = models.CharField(max_length=800)
