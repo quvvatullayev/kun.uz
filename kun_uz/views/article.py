@@ -29,19 +29,23 @@ class CreateArticle(APIView):
 class GetArticle(APIView):
     def get(self, request: Request):
         article = Article.objects.all()
+        print(article)
         serializer = ArticleSerializer(article, many=True)
+        print(serializer.data)
         data = {'article': []}
-        for i in serializer.data:
+        for i in serializer.data[-6:]:
             article_piece = Article_piece.objects.filter(article=i['id'])
             serializer2 = Article_pieceSerializer(article_piece, many=True)
             data['article'].append({
                 'id': i['id'],
                 'title': i['title'],
-                'discription': i['discription'],
-                'image': i['image'],
+                'description': i['description'],
+                'img': i['img'],
+                "jurnalist": i['jurnalist'],
+                'created': i['created'],
                 'article_piece': serializer2.data
             })
-        return Response(serializer.data[-6:], status=status.HTTP_200_OK)
+        return Response(data, status=status.HTTP_200_OK)
     
 class UpdateArticle(APIView):
     def post(self, request: Request, pk):
@@ -74,7 +78,7 @@ class ArticleList(APIView):
             data['article'].append({
                 'id': i['id'],
                 'title': i['title'],
-                'discription': i['discription'],
+                'description': i['description'],
                 'img': i['img'],
                 'created': i['created'],
                 'jurnalist': i['jurnalist'],

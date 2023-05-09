@@ -79,3 +79,21 @@ urlpatterns += [
     path('intervyu/delete/<int:pk>/', DeleteIntervyu.as_view()),
     path('intervyu/detail/<int:pk>/', DetailIntervyu.as_view()),
 ]
+
+from .views.article import (
+    CreateArticle,
+    GetArticle,
+    ArticleList,
+    UpdateArticle,
+    DeleteArticle,
+    ArticleDetail,
+)
+
+urlpatterns += [
+    path('article/create/', CreateArticle.as_view()),
+    path('article/list/', GetArticle.as_view()),
+    path('article/list_all/', ArticleList.as_view()),
+    path('article/update/<int:pk>/', UpdateArticle.as_view()),
+    path('article/delete/<int:pk>/', DeleteArticle.as_view()),
+    path('article/detail/<int:pk>/', ArticleDetail.as_view()),
+]

@@ -17,6 +17,8 @@ from .models import (
     Area_new_piece,
     Area_new_list,
     Area_new_list_piece,
+    Article_piece,
+    Actual_piece,
 )
 
 @admin.register(Area)
@@ -145,3 +147,16 @@ class Area_new_list_pieceAdmin(admin.ModelAdmin):
     search_fields = ('description', 'area_new_list',)
     ordering = ('description', 'area_new_list',)
     
+@admin.register(Article_piece)
+class Article_pieceAdmin(admin.ModelAdmin):
+    list_display = ('description', 'article',)
+    list_filter = ('description', 'article',)
+    search_fields = ('description', 'article',)
+    ordering = ('description', 'article',)
+
+@admin.register(Actual_piece)
+class Actual_pieceAdmin(admin.ModelAdmin):
+    list_display = ('description', 'actual',)
+    list_filter = ('description', 'actual',)
+    search_fields = ('description', 'actual',)
+    ordering = ('description', 'actual',)
