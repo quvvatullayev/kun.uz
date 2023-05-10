@@ -113,3 +113,11 @@ urlpatterns += [
     path('bisnes_new/delete/', DeleteBisnes_new.as_view()),
     path('bisnes_new/detail/', DetailBisnes_new.as_view()),
 ]
+
+from .views.home_view import (
+    HomeView,
+)
+
+urlpatterns += [
+    path('', HomeView.as_view()),
+]
