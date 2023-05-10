@@ -97,3 +97,19 @@ urlpatterns += [
     path('article/delete/<int:pk>/', DeleteArticle.as_view()),
     path('article/detail/<int:pk>/', ArticleDetail.as_view()),
 ]
+
+from .views.bisnes import (
+    CreateBisnes_new,
+    Bisnes_newList,
+    UpdateBisnes_new,
+    DeleteBisnes_new,
+    DetailBisnes_new
+)
+
+urlpatterns += [
+    path('bisnes_new/create/', CreateBisnes_new.as_view()),
+    path('bisnes_new/lsit_all/', Bisnes_newList.as_view()),
+    path('bisnes_new/update/', UpdateBisnes_new.as_view()),
+    path('bisnes_new/delete/', DeleteBisnes_new.as_view()),
+    path('bisnes_new/detail/', DetailBisnes_new.as_view()),
+]
