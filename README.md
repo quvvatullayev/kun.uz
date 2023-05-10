@@ -1,8 +1,8 @@
-# kun.uz
+# `kun.uz`
 
-## Api documentation
+## `Api documentation`
 
-### data base sxema
+### `data base sxema`
 
 ![alt text](kun_uz_img.png)
 
