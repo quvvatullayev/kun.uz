@@ -105,7 +105,6 @@ class HomeView(APIView):
             bisnes_new_data.append({
                 'id': bisnes_new['id'],
                 'title': bisnes_new['title'],
-                'comment': bisnes_new['comment'],
                 'description': bisnes_new['description'],
                 'img': bisnes_new['img'],
                 'created': bisnes_new['created'],
@@ -125,6 +124,13 @@ class HomeView(APIView):
                 'created': video_new['created'],
                 'video_new_piece_list': Video_new_pieceSerializer(video_new_piece_list, many=True).data
             })
+
+        latest_news = []
+        
+        for i in range(1,4):
+            latest_news.append(day_new_data[-i])
+            latest_news.append(actual_data[-i])
+            latest_news.append(bisnes_new_data[-i])
         
 
         return Response({
@@ -137,4 +143,5 @@ class HomeView(APIView):
                 'article_list': article_data,
                 'bisnes_new_list': bisnes_new_data,
                 'video_new_list': video_new_data,
+                'latest_news': latest_news
             }}, status=status.HTTP_200_OK)

@@ -99,7 +99,7 @@ class Bisnes_new(models.Model):
     
 class Bisnes_new_piece(models.Model):
     description = models.CharField(max_length=10000)
-    img = models.ImageField(upload_to='images/')
+    img = models.ImageField(upload_to='images/', blank=True, null=True)
     bisnes_new = models.ForeignKey(Bisnes_new, on_delete=models.CASCADE)
 
     def __str__(self):
