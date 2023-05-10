@@ -109,9 +109,9 @@ from .views.bisnes import (
 urlpatterns += [
     path('bisnes_new/create/', CreateBisnes_new.as_view()),
     path('bisnes_new/lsit_all/', Bisnes_newList.as_view()),
-    path('bisnes_new/update/', UpdateBisnes_new.as_view()),
-    path('bisnes_new/delete/', DeleteBisnes_new.as_view()),
-    path('bisnes_new/detail/', DetailBisnes_new.as_view()),
+    path('bisnes_new/update/<int:pk>/', UpdateBisnes_new.as_view()),
+    path('bisnes_new/delete/<int:pk>/', DeleteBisnes_new.as_view()),
+    path('bisnes_new/detail/<int:pk>/', DetailBisnes_new.as_view()),
 ]
 
 from .views.home_view import (
