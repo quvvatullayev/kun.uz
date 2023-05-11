@@ -2,6 +2,7 @@ from rest_framework.views import APIView
 from rest_framework.response import Response
 from rest_framework.request import Request
 from rest_framework import status
+from rest_framework.authentication import TokenAuthentication
 from ..models import (
     Intervyu,
     Intervyu_piece,
@@ -12,6 +13,7 @@ from ..serialization import (
 )
 
 class CreateIntervyu(APIView):
+    authentication_classes = [TokenAuthentication]
     def post(self, request: Request):
         serializer = IntervyuSerializer(data=request.data)
         if serializer.is_valid():
@@ -48,6 +50,7 @@ class IntervyuList(APIView):
         return Response(serializer.data, status=status.HTTP_200_OK)
     
 class UpdateIntervyu(APIView):
+    authentication_classes = [TokenAuthentication]
     def post(self, request: Request, pk):
         intervyu = Intervyu.objects.get(id=pk)
         serializer = IntervyuSerializer(instance=intervyu, data=request.data)
@@ -62,6 +65,7 @@ class UpdateIntervyu(APIView):
             status=status.HTTP_400_BAD_REQUEST)
     
 class DeleteIntervyu(APIView):
+    authentication_classes = [TokenAuthentication]
     def post(self, request: Request, pk):
         intervyu = Intervyu.objects.get(id=pk)
         intervyu.delete()
