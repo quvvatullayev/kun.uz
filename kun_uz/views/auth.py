@@ -2,10 +2,12 @@ from rest_framework.views import APIView
 from rest_framework.response import Response
 from rest_framework.request import Request
 from rest_framework import status
-# from rest_framework.authentication import TokenAuthentication
-# from rest_framework.permissions import IsAuthenticated
+from rest_framework.authentication import TokenAuthentication
+from rest_framework.authentication import BasicAuthentication
+from rest_framework.permissions import IsAuthenticated
 from rest_framework.authtoken.models import Token
 from django.contrib.auth.models import User
+from django.contrib.auth.hashers import make_password
 
 class Register(APIView):
     def post(self, request: Request):
@@ -36,3 +38,28 @@ class Register(APIView):
             },
             status=status.HTTP_201_CREATED
         )
+    
+class Login(APIView):
+    permission_classes = [IsAuthenticated]
+    def post(self, request: Request):
+        user = request.user
+        if Token.objects.filter(user=user):
+            token = Token.objects.filter(user=user)
+            token.delete()
+            token = Token.objects.create(user=user)
+            return Response(
+                {
+                    "message": "Success",
+                    "token": token.key
+                },
+                status=status.HTTP_200_OK
+            )
+        else:
+            token = Token.objects.create(user=user)
+            return Response(
+                {
+                    "message": "Success",
+                    "token": token.key
+                },
+                status=status.HTTP_200_OK
+            )
