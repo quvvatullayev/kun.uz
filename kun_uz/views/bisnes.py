@@ -2,6 +2,7 @@ from rest_framework.request import Request
 from rest_framework.response import Response
 from rest_framework.views import APIView
 from rest_framework import status
+from rest_framework.authentication import TokenAuthentication
 from ..models import (
     Bisnes_new,
     Bisnes_new_piece,
@@ -13,6 +14,7 @@ from ..serialization import (
 )
 
 class CreateBisnes_new(APIView):
+    authentication_classes = [TokenAuthentication]
     def post(self, request: Request):
         serializer = Bisnes_newSerializer(data=request.data)
         if serializer.is_valid():
@@ -46,6 +48,7 @@ class Bisnes_newList(APIView):
         return Response(data, status=status.HTTP_200_OK)
     
 class UpdateBisnes_new(APIView):
+    authentication_classes = [TokenAuthentication]
     def post(self, request: Request, pk):
         bisnes_new = Bisnes_new.objects.get(id=pk)
         serializer = Bisnes_newSerializer(instance=bisnes_new, data=request.data)
@@ -61,7 +64,8 @@ class UpdateBisnes_new(APIView):
         )
     
 class DeleteBisnes_new(APIView):
-    def delete(self, request: Request, pk):
+    authentication_classes = [TokenAuthentication]
+    def post(self, request: Request, pk):
         bisnes_new = Bisnes_new.objects.get(id=pk)
         bisnes_new.delete()
         return Response(status=status.HTTP_204_NO_CONTENT)
