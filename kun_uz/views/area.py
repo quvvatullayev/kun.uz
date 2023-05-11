@@ -2,6 +2,7 @@ from rest_framework.views import APIView
 from rest_framework.response import Response
 from rest_framework.request import Request
 from rest_framework import status
+from rest_framework.authentication import TokenAuthentication
 from ..models import (
     Area,
 )
@@ -10,6 +11,7 @@ from ..serialization import (
 )
 
 class Create_area(APIView):
+    authentication_classes = [TokenAuthentication]
     def post(self, request):
         serializer = AreaSerializer(data=request.data)
         if serializer.is_valid():
@@ -29,6 +31,7 @@ class Detail_area(APIView):
         return Response(serializer.data, status=status.HTTP_200_OK)
     
 class Update_area(APIView):
+    authentication_classes = [TokenAuthentication]
     def post(self, request:Request, pk):
         area = Area.objects.get(id=pk)
         serializer = AreaSerializer(instance=area, data=request.data)
@@ -37,6 +40,7 @@ class Update_area(APIView):
         return Response(serializer.data, status=status.HTTP_200_OK)
     
 class Delete_area(APIView):
+    authentication_classes = [TokenAuthentication]
     def delete(self, request:Request, pk):
         area = Area.objects.get(id=pk)
         area.delete()
