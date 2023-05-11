@@ -2,6 +2,7 @@ from rest_framework.views import APIView
 from rest_framework.response import Response
 from rest_framework.request import Request
 from rest_framework import status
+from rest_framework.authentication import TokenAuthentication
 from ..models import (
     Actual,
 )
@@ -10,6 +11,7 @@ from ..serialization import (
 )
 
 class CreateActual(APIView):
+    authentication_classes = [TokenAuthentication]
     def post(self, request: Request):
         serializer = ActualSerializer(data=request.data)
         if serializer.is_valid():
@@ -30,6 +32,7 @@ class GetActual(APIView):
         return Response(serializer.data[-5:], status=status.HTTP_200_OK)
     
 class UpdateActual(APIView):
+    authentication_classes = [TokenAuthentication]
     def post(self, request: Request, pk):
         actual = Actual.objects.get(id=pk)
         serializer = ActualSerializer(instance=actual, data=request.data)
@@ -44,6 +47,7 @@ class UpdateActual(APIView):
             status=status.HTTP_400_BAD_REQUEST)
     
 class DeleteActual(APIView):
+    authentication_classes = [TokenAuthentication]
     def post(self, request: Request, pk):
         actual = Actual.objects.get(id=pk)
         actual.delete()
