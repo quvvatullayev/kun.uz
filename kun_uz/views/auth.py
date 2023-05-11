@@ -65,7 +65,7 @@ class Login(APIView):
             )
 
 class Logout(APIView):
-    # permission_classes = [TokenAuthentication]
+    authentication_classes = [TokenAuthentication]
     def post(self, request: Request):
         user = request.user
         if Token.objects.filter(user=user):
