@@ -121,3 +121,11 @@ from .views.home_view import (
 urlpatterns += [
     path('', HomeView.as_view()),
 ]
+
+from .views.auth import (
+    Register,
+)
+
+urlpatterns += [
+    path('register/', Register.as_view()),
+]
