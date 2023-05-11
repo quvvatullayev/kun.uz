@@ -2,6 +2,7 @@ from rest_framework.views import APIView
 from rest_framework.response import Response
 from rest_framework.request import Request
 from rest_framework import status
+from rest_framework.authentication import TokenAuthentication
 from ..models import (
     Article,
     Article_piece,
@@ -13,6 +14,7 @@ from ..serialization import (
 )
 
 class CreateArticle(APIView):
+    authentication_classes = [TokenAuthentication]
     def post(self, request: Request):
         serializer = ArticleSerializer(data=request.data)
         if serializer.is_valid():
@@ -48,6 +50,7 @@ class GetArticle(APIView):
         return Response(data, status=status.HTTP_200_OK)
     
 class UpdateArticle(APIView):
+    authentication_classes = [TokenAuthentication]
     def post(self, request: Request, pk):
         article = Article.objects.get(id=pk)
         serializer = ArticleSerializer(instance=article, data=request.data)
@@ -62,6 +65,7 @@ class UpdateArticle(APIView):
             status=status.HTTP_400_BAD_REQUEST)
     
 class DeleteArticle(APIView):
+    authentication_classes = [TokenAuthentication]
     def post(self, request: Request, pk):
         article = Article.objects.get(id=pk)
         article.delete()
