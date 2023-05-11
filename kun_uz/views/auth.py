@@ -40,7 +40,7 @@ class Register(APIView):
         )
     
 class Login(APIView):
-    permission_classes = [IsAuthenticated]
+    authentication_classes = [BasicAuthentication]
     def post(self, request: Request):
         user = request.user
         if Token.objects.filter(user=user):
@@ -62,4 +62,26 @@ class Login(APIView):
                     "token": token.key
                 },
                 status=status.HTTP_200_OK
+            )
+
+class Logout(APIView):
+    # permission_classes = [TokenAuthentication]
+    def post(self, request: Request):
+        user = request.user
+        if Token.objects.filter(user=user):
+            token = Token.objects.filter(user=user)
+            token.delete()
+            return Response(
+                {
+                    "message": "Success"
+                },
+                status=status.HTTP_200_OK
+            )
+        else:
+            return Response(
+                {
+                    "message": "Error",
+                    "errors": "User is not logged in"
+                },
+                status=status.HTTP_400_BAD_REQUEST
             )
