@@ -88,4 +88,14 @@
 | GET | `kun_uz/bisnes_new/detail/<int:pk>/` | Get bisnes new by id |
 
 
+# Author api
+
+| Method | Path | Description |
+| ------ | ------ | ------ |
+| POST | `kun_uz/register/` | Register user |
+| POST | `kun_uz/login/` | Login user |
+| POST | `kun_uz/logout/` | Logout user |
+
+
+
 
